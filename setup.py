@@ -4,7 +4,7 @@ license = open('LICENSE.txt').read()
 
 setup(
     name='iloveig',
-    version='0.0.1',
+    version='0.0.2',
     author='xwaynec',
     author_email='xwaynec@gmail.com',
     packages=['iloveig'],
