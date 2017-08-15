@@ -19,12 +19,10 @@ setup(
         ]
     },
     install_requires = [
+        "beautifulsoup4==4.6.0",
         "certifi==2017.7.27.1",
         "chardet==3.0.4",
-        "gevent==1.2.2",
-        "greenlet==0.4.12",
         "idna==2.5",
-        "lxml==3.8.0",
         "requests==2.18.3",
         "urllib3==1.22",
     ],
