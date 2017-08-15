@@ -28,4 +28,4 @@ iloveig https://www.instagram.com/instagram/
 ```
 
 
-You could find account folder in ~/Desktop/Pictures/`iloveig`
+You could find account folder in ~/Pictures/`iloveig`
