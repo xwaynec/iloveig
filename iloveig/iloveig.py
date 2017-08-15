@@ -2,6 +2,7 @@ import os
 import re
 import json
 import sys
+import time
 import platform
 import requests
 
@@ -137,6 +138,7 @@ def iloveig(url):
 
     while has_next_page:
         try:
+            time.sleep(10)
             response = requests.get(
                 url="https://www.instagram.com/graphql/query/",
                 params={
@@ -155,18 +157,24 @@ def iloveig(url):
 
             obj = json.loads(response.text)
 
-            for element in obj['data']['user']['edge_owner_to_timeline_media']['edges']:
-                filename = element['node']['display_url'].rsplit('/', 1)[1].rsplit('?', 1)[0]
+            if 'data' in obj:
 
-                resp = requests.get(element['node']['display_url'])
+                for element in obj['data']['user']['edge_owner_to_timeline_media']['edges']:
+                    filename = element['node']['display_url'].rsplit('/', 1)[1].rsplit('?', 1)[0]
 
-                print 'fetch %s' % (filename)
+                    resp = requests.get(element['node']['display_url'])
 
-                with open(os.path.join(folder, filename), 'wb+') as f:
-                    f.write(resp.content)
+                    print 'fetch %s' % (filename)
 
-            end_cursor = obj["data"]["user"]["edge_owner_to_timeline_media"]['page_info']['end_cursor']
-            has_next_page =  obj["data"]["user"]["edge_owner_to_timeline_media"]['page_info']['has_next_page']
+                    with open(os.path.join(folder, filename), 'wb+') as f:
+                        f.write(resp.content)
+
+                end_cursor = obj["data"]["user"]["edge_owner_to_timeline_media"]['page_info']['end_cursor']
+                has_next_page =  obj["data"]["user"]["edge_owner_to_timeline_media"]['page_info']['has_next_page']
+
+            else:
+                print obj
+                has_next_page = False
 
         except requests.exceptions.RequestException:
             print('HTTP Request failed')
