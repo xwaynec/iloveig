@@ -23,7 +23,7 @@ setup(
         "certifi==2017.7.27.1",
         "chardet==3.0.4",
         "idna==2.5",
-        "requests==2.18.3",
+        "requests==2.20.0",
         "urllib3==1.24.2",
     ],
 )
