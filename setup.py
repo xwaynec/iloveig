@@ -24,6 +24,6 @@ setup(
         "chardet==3.0.4",
         "idna==2.5",
         "requests==2.18.3",
-        "urllib3==1.22",
+        "urllib3==1.24.2",
     ],
 )
